@@ -10,4 +10,13 @@ class Task extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'completed'];
+
+    public static function storeTask(array $data)
+    {
+        return self::create([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'completed' => $data['completed'],
+        ]);
+    }
 }

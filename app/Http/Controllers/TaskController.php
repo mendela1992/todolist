@@ -29,11 +29,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        $task = Task::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'completed' => $request->completed,
-        ]);
+        $task = Task::storeTask($request->safe()->all());
         return new TaskResource($task);
     }
 
@@ -57,7 +53,7 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        $task->update($request->all());
+        $task->update($request->safe()->all());
         return new TaskResource($task);
     }
 
